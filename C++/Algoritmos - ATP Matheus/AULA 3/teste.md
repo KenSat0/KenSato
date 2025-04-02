@@ -48,10 +48,11 @@ COMO PUXAR UMA ALTERAÇÃO DO REPOSITORIO
 2) git pull 
 
 ALTEREI O PROJETO EM OUTRA MAQUINA, COMO SALVAR O PROGRESSO?
+(esteja logado no github com essa maquina)
 
 git add .
 
 git commit -m "nome do commit"
 
-gir push origin (branch)
+git push origin (branch)
 
