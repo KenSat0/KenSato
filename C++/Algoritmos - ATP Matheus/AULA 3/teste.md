@@ -46,3 +46,12 @@ COMO PUXAR UMA ALTERAÇÃO DO REPOSITORIO
 1) entre na pasta do arquivo com o GitBash
 
 2) git pull 
+
+ALTEREI O PROJETO EM OUTRA MAQUINA, COMO SALVAR O PROGRESSO?
+
+git add .
+
+git commit -m "nome do commit"
+
+gir push origin (branch)
+
