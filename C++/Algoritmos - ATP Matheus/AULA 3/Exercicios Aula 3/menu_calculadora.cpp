@@ -19,7 +19,7 @@ int main()
 
         if (op == 1)
         {
-            printf("Digite valores para A e B: \n");
+            printf("Digite valores para A e B: ");
             scanf("%d %d", &a, &b);
 
             a=a+b;
@@ -28,7 +28,7 @@ int main()
         }
         else if (op == 2)
         {
-            printf("Digite valores para A e B: \n");
+            printf("Digite valores para A e B: ");
             scanf("%d %d", &a, &b);
 
             a=a-b;
@@ -37,7 +37,7 @@ int main()
         }
         else if (op == 3)
         {
-            printf("Digite valores para A e B: \n");
+            printf("Digite valores para A e B: ");
             scanf("%d %d", &a, &b);
 
             a=a*b;
@@ -46,7 +46,7 @@ int main()
         }
         else if (op == 4)
         {
-            printf("Digite valores para A e B: \n");
+            printf("Digite valores para A e B: ");
             scanf("%d %d", &a, &b);
 
             a=a/b;
