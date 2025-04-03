@@ -4,7 +4,7 @@
 int main()
 {
     int op, a, b;
-    char oi;
+    char o;
 
     while (op != 5)
     {
@@ -55,6 +55,6 @@ int main()
         }
     }
 
-    scanf("%c", oi);
+    scanf("%c", o);
     return(0);
 }
