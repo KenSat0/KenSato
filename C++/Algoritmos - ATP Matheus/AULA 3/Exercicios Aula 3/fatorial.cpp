@@ -3,18 +3,19 @@
 
 int main()
 {
-    int n, m = -1;
+    int n, f = 1;
+    char a;
     printf("Digite um numero natural: ");
     scanf("%d", &n);
 
     while (n > 0)
     {
-        m = m * n;
+        f = f * n;
         n--;
     }
 
-    printf("Fatorial: %d", n);
+    printf("Fatorial: %d", f);
 
-    scanf("%c");
+    scanf("%c", a);
     return(0);
 }

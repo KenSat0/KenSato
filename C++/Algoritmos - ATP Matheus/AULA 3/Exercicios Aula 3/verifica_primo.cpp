@@ -3,32 +3,36 @@
 
 int main()
 {
-    int n, m, p;
-    printf("Digite um numero natural: ");
-    scanf("%d", &n);
+    int num, i = 2, primo = 1;
+    char c;
+    printf("Entrada: ");
+    scanf("%d", &num);
 
-    m = n;
-    p = 0;
-
-    while (m != 1)
-    {   
-        m = m-1;
-        while ((n%m)!=0)
-        {
-            p = 1;
-        }
-    }
-    
-    if (p == 0)
+    if (num <= 1)
     {
         printf("nao e primo");
     }
-
     else
     {
-        printf("e primo");
-    }
+        while (i<num && primo == 1)
+        {
+            if (num%i==0)
+            {
+                primo=0;
+            }
+            i++;
+        }
 
-    scanf("%c");
+        if (primo)
+        {
+            printf("e primo");
+        }
+        else
+        {
+            printf("nao e primo");
+        }
+
+    }
+    scanf("%c", c);
     return(0);
 }
