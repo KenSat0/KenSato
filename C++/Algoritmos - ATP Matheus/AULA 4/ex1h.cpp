@@ -1,2 +1,2 @@
 
-    printf("Este    e   um  programa    em  C");
+    printf("Este/e/um/programa/em/C");

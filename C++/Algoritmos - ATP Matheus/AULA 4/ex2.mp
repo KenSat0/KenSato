@@ -13,7 +13,7 @@
 
 //f - printf(“Modulo de %d dividido por %d é %d\n”, x, y, x/y);
 
-//g - if ( x == y );
+//g - if ( x == y )
 //    {
 //        printf("%d é igual a %d\n", x, y );
 //    }
