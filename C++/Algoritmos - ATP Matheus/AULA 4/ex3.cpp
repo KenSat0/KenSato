@@ -18,11 +18,11 @@ int main()
     {
         printf("%d e maior que %d\n", a, b);
     }
-    else if (b > a)
+    if (b > a)
     {
         printf("%d e maior que %d\n", b, a);
     }
-    else 
+    if (a==b)
     {
         printf("Os numeros sao iguais");
     }
