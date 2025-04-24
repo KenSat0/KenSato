@@ -3,23 +3,28 @@
 
 int eh_palindromo(int numero) 
 {
-    if (numero < 0) return 0;  // Números negativos não são palíndromos
+    if (numero < 0) return 0;
 
-    int original = numero; // original guarda o numero em sua ordem de digitos orignal
+    int original = numero;
     int invertido = 0;
 
-    while (numero != 0) 
+    while (numero != 0)
     {
-        int digito = numero % 10; //ao realizar numero%10, temos o ultimo digito, que é guardado em digito
-        invertido = invertido * 10 + digito; //invertido guarda o ultimo digito, e depois multiplica ele por 10, para guardar o proximo digito na casa das unidades (portanto guardando o numero em ordem invertida)
-        numero = numero / 10; //numero é dividido por 10, por se tratar de uma variavel inteira, o resto é ignorado, portanto excluindo o ultimo digito ja guardado em "Invertido"
+        int digito = numero % 10;
+        invertido = invertido * 10 + digito;
+        numero = numero / 10;
     }
 
-    if (original == invertido) 
-    
-{
+    // o laço extrai o ultimo digito com "numero%10" e armazena em "invertido", depois esse digito é tirado de "numero" com "numero / 10"
+    // depois o proximo digito é tirado, "invertido * 10 + digito" começa a armazenar os numeros em ordem contraria
+    // isso se repete até que todos os digitos tenham sido armazenados em Invertido 
+
+    if (original == invertido)
+    {
         return 1;
-    } else {
+    }
+    else
+    {
         return 0;
     }
 }
