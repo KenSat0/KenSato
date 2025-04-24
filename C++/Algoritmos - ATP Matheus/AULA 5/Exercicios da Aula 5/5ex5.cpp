@@ -40,5 +40,5 @@ int main()
     imprima_imc(kg, m);
 
     getchar();
-    return();
+    return (0);
 }
