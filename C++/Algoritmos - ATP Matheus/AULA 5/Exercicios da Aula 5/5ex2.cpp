@@ -9,3 +9,16 @@ float quad(float x)
 {
     return (a*x*x + b*x + c);
 }
+
+int main()
+{
+    float x;
+    printf("Digite o valor de X: ");
+    scanf("%f", &x);
+    x = quad(x);
+
+    printf("Para o X designado, a funcao 2x^2 + 3x + 5 = %.2f", x);
+
+    getchar();
+    return 0;
+}
