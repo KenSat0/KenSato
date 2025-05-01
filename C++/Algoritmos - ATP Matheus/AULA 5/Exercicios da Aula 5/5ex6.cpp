@@ -31,9 +31,21 @@ int eh_palindromo(int numero)
 
 int main()
 {
-    int pal = eh_palindromo(121);
+    int pal;
 
-    printf("%d", pal);
+    printf("Digite um numero: ");
+    scanf("%d", &pal);
+
+    pal = eh_palindromo(pal);
+
+    if (pal)
+    {
+        printf("eh");
+    }
+    else
+    {
+        printf("ne nao");
+    }
 
     return 0;
 }
