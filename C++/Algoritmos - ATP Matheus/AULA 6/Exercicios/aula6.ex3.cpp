@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 #include <Stdlib.h>
-#include <time.h>
+
 
 int n_de_digitos(int n)
 {

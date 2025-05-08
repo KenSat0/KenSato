@@ -1,8 +1,7 @@
 /*programa que imprime a somatoria de um n+(n-1)...+1*/
 
 #include <stdio.h>
-#include <Stdlib.h>
-#include <time.h>
+
 
 int somatorio(int n)
 {
