@@ -1,4 +1,4 @@
-/*programa que imprime um numero aleatorio de 2 até 12 (inclusos)*/
+/*programa que imprime a somatoria de um n+(n-1)...+1*/
 
 #include <stdio.h>
 #include <Stdlib.h>
