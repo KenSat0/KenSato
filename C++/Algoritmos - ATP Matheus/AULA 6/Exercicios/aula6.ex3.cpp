@@ -6,12 +6,10 @@
 
 int n_de_digitos(int n)
 {
-    int cont;
-    while (n != 0)
-    {
+
     if (n<10) return (1);
     return(1+n_de_digitos(n/10));
-    }
+
 }
 
 int main()
