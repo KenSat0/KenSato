@@ -25,12 +25,20 @@ void invert(int *a, int t)
 
 int main ()
 {
-    int a[5] = {1,2,3,4,5};
+    int a[100], T;
     
-    invert(a, 5);
+    printf("Tamanho do vetor:\n");
+    scanf("%d", &T);
 
-    for (int i = 0; i<5; i++)
-    printf("%d ", a[i]);
+    printf("Digite os elementos do vetor:\n");
+    for (int i = 0; i<T; i++)
+        scanf("%d", &a[i]);
+
+    invert(a, T);
+
+    printf("Vetor invertido:\n");
+    for (int i = 0; i<T; i++)
+        printf("%d ", a[i]);
 
     getchar();
     return 0;

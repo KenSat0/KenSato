@@ -14,25 +14,26 @@ int pertence(int t, int x, int *v)
     return 0;
 }
 
-//alternativa para o ex4
-
-void intersecao(int *a, int *b, int t)
-{
-    for (int i = 0; i<t; i++)
-    {
-        if (pertence(5, a[i], b)) printf("\n%d", (a[i]));
-    }
-}
-
 int main ()
 {
-    int a[5] = {1,3,5,7,9};
+    int v[100], t, x;
 
-    int b[5] = {0,3,6,8,5};
-    
-    printf("%d",pertence(5, 2, a));
+    printf("Tamanho do vetor: ");
+    scanf("%d", &t);
 
-    intersecao(a, b, 5);
+    printf("Digite os elementos do vetor:\n");
+    for (int i = 0; i < t; i++) 
+    {
+        scanf("%d", &v[i]);
+    }
+
+    printf("Digite o elemento a procurar: ");
+    scanf("%d", &x);
+
+    if (pertence(t, x, v))
+        printf("Elemento %d encontrado.\n", x);
+    else
+        printf("Elemento %d nao encontrado.\n", x);
 
     getchar();
     return 0;

@@ -9,14 +9,26 @@
 
 int main ()
 {
-    int vetor_a[5] = {0, 2, 4, 6, 8};
-    int vetor_b[5] = {1, 3, 5, 7, 9};
+    int vetor_a[5];
+    int vetor_b[5];
 
+    printf("Digite 5 valores para o vetor A:\n");
+    for (int i = 0; i < 5; i++)
+    {
+        scanf("%d", &vetor_a[i]);
+    }
+
+    printf("Digite 5 valores para o vetor B:\n");
+    for (int i = 0; i < 5; i++)
+    {
+        scanf("%d", &vetor_b[i]);
+    }
+
+    printf("Valores Intercalados:\n");
     for (int i = 0; i < 5; i++)
     {
         printf("%d %d ", vetor_a[i], vetor_b[i]);
     }
-    
 
     getchar();
     return 0;
