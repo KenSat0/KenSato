@@ -1,64 +1,50 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int *separa_par (int *v, int n)
+int *separa_par (int *v, int n, int *n_t)
 {
-    int *s = NULL;
-    int cont = 0, j = 0;
-    for(int i = 0; i < n; i++)
+    int count = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (v[i]%2 == 0) count++; //contagem ed quantos pares tem em V
+    }
+    
+    int *s = (int*)malloc(count*sizeof(int)); //alocação de espaço para S
+    if (s==NULL)
+    {
+        *n_t = 0;
+        return NULL;  //falha na alocação
+    }
+
+    int a = 0;
+    for (int i = 0; i < n; i++)
     {
         if (v[i]%2 == 0)
         {
-            cont++;
+            s[a++] = v[i];
         }
     }
-
-    s = (int*) malloc(cont*sizeof(int));
-
-    if (s==NULL) return NULL;
-
-    for (int i = 0; i<cont; i++)
-    {
-        if (v[i]%2 == 0)
-        {
-            s[j]=v[i];
-            j++;
-        }  
-    }
-
+    
+    *n_t = count;
 
     return (s);
 }
 
 int main()
 {
-    int *v = NULL;
-    int *v2 = NULL;
-    int x = 0, T = 0;
+    int v[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int n = sizeof(v)/sizeof(v[0]);
 
-    v = (int*) malloc(sizeof(int));
+    int t_s;
+    int *s = separa_par(v, n, &t_s);
 
-    if (v==NULL) return 1;
-
-    while(x!=-1)
+    printf("\nVetor de pares: ");
+    for (int i = 0; i < t_s; i++) 
     {
-        scanf("%d", &x);
-        getchar();
-
-        if (x!=-1)
-        {
-            T++;
-            realloc(v, T * sizeof(int));
-
-            v[T-1] = x;
-        }
+        printf("%d ", s[i]);
     }
 
-    v2 = separa_par(v, T);
-    for (int i = 0; i< sizeof(v2)/sizeof(int); i++) printf("%d", v2[i]);
-
-    free(v);
-    free(v2);
+    free(s);
     getchar();
     return 0;
 }
