@@ -1,4 +1,4 @@
-//ex 1, 6, 7, 9:
+//ex 1, 2, 3, 6, 7, 9:
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -34,14 +34,6 @@ void libera(int**A,int linhas)
     free(A);
 }
 
-int main()
-{
-
-
-    getchar();
-    return 0;
-}
-
 void imprime_matriz(int **A, int linhas, int colunas)
 {
     for (int i = 0; i<linhas; i++)
@@ -53,6 +45,7 @@ void imprime_matriz(int **A, int linhas, int colunas)
 
     printf("\n");
     }
+    printf("\n");
 }
 
 int **soma_matriz(int A[3][3], int B[3][3])
@@ -69,8 +62,39 @@ int **soma_matriz(int A[3][3], int B[3][3])
     return C;
 }
 
+int **transposta(int A[3][3])
+{
+    int **C = alocar_certo(3, 3);
+
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            C[i][j] = A[j][i];
+        }
+    }
+
+    return C;
+}
+
+void pertence(int A[3][3], int x)
+{
+        for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if(x==A[i][j])
+            {
+                printf("%d pertence a matriz e esta na posicao %d, %d\n", x, i+1, j+1);
+            }
+        }
+    }
+    printf("\n");
+}
+
 int main()
 {
+    int x;
     int A[3][3] = 
     {
         {1, 2, 3},
@@ -85,11 +109,18 @@ int main()
         {7, 8, 9}
     };
 
+    printf("X: ");
+    scanf("%d", &x);
+
+    pertence(A, x);
+
     int **C = soma_matriz(A, B);
     imprime_matriz(C,3,3);
+
+    C = transposta(A);
+    imprime_matriz(C,3,3);
+
     libera(C,3);
-    
-    printf("%d", C[0][0]);
 
     getchar();
     return 0;
