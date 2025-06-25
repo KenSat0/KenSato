@@ -3,26 +3,26 @@ fornecido, arredonde para 0 casas decimais (casas = 0).*/
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <math.h>  // para usar round()
 
-float arredondar(float valor, int casas = 0)
-{
-    float fator = 1.0;
+double round_custom(double valor, int casas) {
+    double fator = pow(10.0, casas);
 
-    for (int i = 0; i < casas; i++) fator = fator * 10.0;
-    
-    if (valor >= 0) return (int)(valor * fator +0.5)/fator;
-    else return (int)(valor * fator - 0.5)/fator;
-
+    return round(valor * fator) / fator;
 }
 
-int main(int argc, char *argv[])
-{
-    float valor = atof(argv[1]);
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        printf("Uso: %s <valor> <casas_decimais>\n", argv[0]);
+        return 1;
+    }
+
+    double valor = atof(argv[1]);
     int casas = atoi(argv[2]);
 
-    printf("\n%f", arredondar(valor, casas));
+    double resultado = round_custom(valor, casas);
 
-    getchar();
+    printf("Resultado: %.*f\n", casas, resultado);
+
     return 0;
 }
