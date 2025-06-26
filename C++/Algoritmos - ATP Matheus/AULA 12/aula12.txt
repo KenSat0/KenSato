@@ -1,0 +1,39 @@
+Estrutura de Dados
+- *Vitualização*
+- *Visualização*
+- *Abstração*
+
+Onde são escritos os codigos no computador? -> Memória (corrente eletrica / assinatura magnéctica / fibra ótica)
+
+int num = 3;
+
+Qual a lógica de escrever 3? (0v 5v 5v) -> 011 = binário para 3 || -++ em magnéctica (011)...
+    Todas as lógicas de altos e baixos, ligado e desligado, positivo e negativo. Tudo se transforma em 0 e 1
+
+
+Tudo é interpretado pelos mecanismos da Maquina de Turing 
+
+Termos importantes:
+    Bit: menor unidade de dados (0 ou 1)
+    Bytes: grupos de 8 bits (01000001 = A em ASCII)
+
+Onde vivem os Bits:
+    Registro da CPU 
+    Instruções de programa
+    Variáveis na memoria
+    Endereços de dados
+
+Tipos de Dados:
+    int: 00000011 = 3
+    float (outro padrão de bits)
+    ...
+
+Como representar grafos com estrutura de nós:
+
+typedef struct no
+{
+    char valor[100];
+    struct no *proximo;
+} No;
+
+nesse caso: estrutura que chama um ponteiro, que endereça para outra estrutura e assim por diante

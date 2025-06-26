@@ -78,7 +78,6 @@ int main() {
     }
 
     fclose(arquivo);
-    printf("Cartelas geradas com sucesso em 'cartelas.csv'!\n"); //printo que deu certo
 
     return 0;
 }
