@@ -1,40 +1,56 @@
+/*
+
+Crie um programa que gere cartelas de BINGO no formato .csv, onde cada linha é
+uma cartela com 5 números únicos por coluna (B-I-N-G-O):
+
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
 #include <time.h>
 
+
+//função verifica se o numero sorteado é repetido
 int verifica_rep(int numeros[], int qtd, int num)
 {
-    for (int i = 0; i < qtd; i++) {
-        if (numeros[i] == num)
+    for (int i = 0; i < qtd; i++) //laço que passa por todos os numeros da linha
+    { 
+        if (numeros[i] == num) //se na linha houver um numero igual a num, retorna 1 (é repetido)
             return 1; 
     }
-    return 0;
+    return 0; //retorna que não repete (0)
 }
 
+//gera numeros para cada linha, considerando quantidade de numeros desejados e o intervalo
 void gerar_numeros(int numeros[], int qtd, int min, int max) 
 {
     int count = 0; 
     while (count < qtd) 
     {
-        int num = rand() % (max - min + 1) + min; 
-        if (!verifica_rep(numeros, count, num)) 
+        int num = rand() % (max - min + 1) + min; //gera numero aleatorio dentro do intervalo
+        if (!verifica_rep(numeros, count, num)) //se o numero gerado não repete
         {
-            numeros[count++] = num;
+            numeros[count++] = num; //numero entra na linha e vai para proxima interação
         }
     }
 }
 
+//função gera as cartelas desejadas
 void gerar_cartela(FILE *arquivo)
 {
+    //passa os vetores dos tamanhos desejados
+    //N[4] pq tem o espaço FREE
     int B[5], I[5], N[4], G[5], O[5];
 
+    //usa as funções anteriores para gerar numeros, garantindo que não haja repetição
     gerar_numeros(B, 5, 1, 15); 
     gerar_numeros(I, 5, 16, 30);
     gerar_numeros(N, 4, 31, 45); 
     gerar_numeros(G, 5, 46, 60);
     gerar_numeros(O, 5, 61, 75);
 
+    //monta a cartela
     for (int linha = 0; linha < 5; linha++) 
     { 
         fprintf(arquivo, "%d,", B[linha]);  
@@ -56,8 +72,8 @@ void gerar_cartela(FILE *arquivo)
     fprintf(arquivo, "\n");
 }
 
-int main() {
-
+int main()
+{
     int cartelas;
     printf("Digite a quantidade de cartelas a serem geradas:\n");
     scanf("%d", &cartelas);
