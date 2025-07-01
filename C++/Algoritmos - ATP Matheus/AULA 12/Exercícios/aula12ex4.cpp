@@ -36,3 +36,21 @@ Quebrado somar(Quebrado *a, Quebrado *b)
 
     return(soma);
 }
+
+Quebrado subtrair(Quebrado *a, Quebrado *b)
+{
+    Quebrado subtracao;
+
+    int parte_inteira = a->inteiro - b->inteiro;
+    int parte_decimal = a->decimal - b->decimal;
+
+    if (parte_decimal <= -10000)
+    {
+        parte_inteira--;
+        parte_decimal+=10000;
+    }
+    subtracao.inteiro = parte_inteira;
+    subtracao.decimal = parte_decimal;
+
+    return subtracao;
+}

@@ -1,0 +1,7 @@
+Boleto de pedido:
+Item                                  Qtd       Preço     Subtotal
+----------------------------------------------------------------------------
+Lanche                                  1   R$   12.50   R$     12.50
+Batata Frita                            1   R$    8.00   R$      8.00
+
+Total a pagar: R$ 20.50
