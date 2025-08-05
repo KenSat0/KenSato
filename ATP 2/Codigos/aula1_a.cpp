@@ -9,7 +9,7 @@ typedef struct
     int *calorias;
     float peso_inicial;
     float peso_final;
-    int alta = 0;
+    int alta;
 
 } Registro;
 
@@ -27,6 +27,12 @@ int cadastro()
 
         printf("\nNumero da ficha (-1 para terminar): ");
         scanf("%d", &ficha);
+
+        if(ficha<1)
+        {
+            printf("\nNumero inválido de ficha");
+            return 2;
+        }
 
         if (qnt_hospedes >= 20)
         {
@@ -48,12 +54,6 @@ int cadastro()
                 printf("\nEssa ficha esta em uso e ainda nao teve alta");
                 return 2;
             }
-        }
-
-        if(ficha<1)
-        {
-            printf("\nNumero inválido de ficha");
-            return 2;
         }
 
         hospedes[ficha-1] = (Registro*)malloc(sizeof(Registro));
@@ -120,10 +120,13 @@ int dar_baixa()
         printf("\nNumero da ficha: ");
         scanf("%d", &ficha);
 
-        if (hospedes[ficha-1]->alta==1)
+        if (hospedes[ficha-1 != NULL])
         {
-            printf("Essa ficha ja recebeu alta");
-            return 2;
+            if (hospedes[ficha-1]->alta==1)
+            {
+                printf("Essa ficha ja recebeu alta");
+                return 2;
+            }
         }
 
         printf("Peso ao sair: ");
@@ -131,7 +134,7 @@ int dar_baixa()
         hospedes[ficha-1]->peso_final = peso_fim;
 
         float perda = hospedes[ficha-1]->peso_inicial - hospedes[ficha-1]->peso_final;
-        printf("Peso perdido: %f kg", perda);
+        printf("Peso perdido: %.2f kg\n", perda);
 
         qnt_hospedes--;
         hospedes[ficha-1]->alta = 1;
@@ -172,6 +175,7 @@ int main()
         if (menu==2) dar_baixa();
         if (menu==3) return 1;
     }
-    return 0;
+    
     getchar();
+    return 0;
 }
