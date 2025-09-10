@@ -1,0 +1,5 @@
+Obsevações sobre a Prova:
+    3~4 questões
+    Consulta a livros
+    Seguir ao máximo o enunciado
+    Tudo até agora menos recursividade
