@@ -3,6 +3,8 @@
 #include <string.h>
 #include <ctype.h>
 
+//bloco de dados para alunos
+
 typedef struct
 {
 
@@ -20,9 +22,11 @@ void limpar_buffer()
 
 int adicionar()
 {
+    //abre arquivo para escrever em binario
     FILE *p = fopen("alunos.txt", "ab");
     if(p==NULL) return 1;
 
+    //cria ponteiro aluno auxiliar
     Alunos *aux;
     aux = (Alunos*)malloc(sizeof(Alunos));
 
@@ -37,29 +41,36 @@ int adicionar()
     printf("\nNota: ");
     scanf("%f", &aux->nota);
 
+    //escreve o auxiliar, de tamanho aluno, 1 por vez, no arquivo
     fwrite(aux, sizeof(Alunos), 1, p);
 
+    //libera e fecha
     free(aux);
     fclose(p);
 }
 
 int listar()
 {
+    //abre arquivo para ler em binario
     FILE *p = fopen("alunos.txt", "rb");
     if(p==NULL) return 1;
 
+    //volta o ponteiro para o inicio do arquivo
     rewind(p);  
 
     Alunos *aux;
     aux = (Alunos*)malloc(sizeof(Alunos));
 
+    //enquanto der para ler um aluno (se acabar, retorna 0 e fica falso)
     while(fread(aux, sizeof(Alunos), 1, p)==1)
     {
+        //imprime informações
         printf("\nNome: %s", aux->nome);
         printf("\nIdade: %d", aux->idade);
         printf("\nNota: %.2f", aux->nota);
     }
 
+    //libera e fecha
     free(aux);
     fclose(p);
     return 0;
@@ -79,16 +90,20 @@ int buscar()
     printf("\nBusca por nome: ");
     scanf("%s", nome);
 
+    //enquanto não terminar o arquivo
     while(fread(aux, sizeof(Alunos), 1, p)==1)
     {
+        //compara duas strings: nome X busca (0 significa nenhuma diferença)
         if(strcmp(nome, aux->nome)==0)
         {
+            //imprime o aluno que achou
             printf("\nNome: %s", aux->nome);
             printf("\nIdade: %d", aux->idade);
             printf("\nNota: %.2f", aux->nota);
         }
     }
 
+    //libera e fecha
     free(aux);
     fclose(p);
     return 0;

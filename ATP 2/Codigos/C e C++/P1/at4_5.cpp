@@ -127,7 +127,7 @@ int excluir(regFunc**atual)
     printf("\nNumero para excluir: ");
     scanf("%d", &numero);
 
-    atl = *atual;
+    p_atual = *atual;
 
     if(*atual == NULL)
     {

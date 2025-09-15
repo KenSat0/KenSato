@@ -3,6 +3,8 @@
 #include <string.h>
 #include <ctype.h>
 
+//criando o bloco de dados registro
+
 typedef struct
 {
     char nome[50];
@@ -14,11 +16,18 @@ typedef struct
     int alta;
 } Registro;
 
+//vetor de registro para no total 20 hospedes
 Registro *hospedes[20];
+
+//variavel que acompanha quantidade de hospedes
 int qnt_hosp = 0;
 
+
+//função recebe numero e imprime a ficha desse numero
 void imprime(int numero)
 {
+
+    //usamos o indice [numero-1] pois em um vetor de 20 posições, o inicio é 0 e o fim é 19
     printf("\n\n");
     printf("\n--------------------");
     printf("\nNome: %s", hospedes[numero-1]->nome);
@@ -29,8 +38,10 @@ void imprime(int numero)
     {
         printf("\n\tDia %d: %.2f", i+1, hospedes[numero-1]->calorias[i]);
     }
+    //verifica a condição alta para saber se o peso final ja foi registrado
     if(hospedes[numero-1]->alta==1)
     {
+        //se alta == 1, imprime peso final e perda de peso
         printf("\nPeso ao sair: %.2f", hospedes[numero-1]->peso_saida);
         float diferenca = hospedes[numero-1]->peso_entrada - hospedes[numero-1]->peso_saida;
         printf("\n\tPeso perdido: %.2f", diferenca);
@@ -47,6 +58,8 @@ void cadastrar()
 {
     printf("\n\n");
     int numero;
+
+    //se spa estiver cheio, retorna a função, ja que não da mais para cadastrar
     if (qnt_hosp == 20)
     {
         perror("\nSPA Cheio");
@@ -56,18 +69,21 @@ void cadastrar()
     printf("\nNumero: ");
     scanf("%d", &numero);
 
+    //verifica se a ficha esta disponivel
     if(hospedes[numero-1] != NULL)
     {
         perror("\nFIcha ocupada");
         return;
     }
 
+    //verifica a validade do numero 
     if(numero < 1 || numero > 20)
     {
         perror("\nNumero invalido");
         return;
     }
 
+    //aloca memoria para a ficha caso ela tenha passado pelas verificações 
     hospedes[numero-1] = (Registro*)malloc(sizeof(Registro));
     if(hospedes[numero-1]==NULL)
     {
@@ -89,6 +105,7 @@ void cadastrar()
     printf("\nPeso Inicial: ");
     scanf("%f", &hospedes[numero-1]->peso_entrada);
 
+    //aloca memoria de vetor float para o termo calorias de hospedes, pois cada dia tem sua caloria
     hospedes[numero-1]->calorias = (float*)malloc(hospedes[numero-1]->dias * sizeof(float));
     for(int i = 0; i < hospedes[numero-1]->dias; i++)
     {
@@ -96,6 +113,7 @@ void cadastrar()
         scanf("%f", &hospedes[numero-1]->calorias[i]);
     }
 
+    //alta = falso para a verificação de imprime()
     hospedes[numero-1]->alta = 0;
     imprime(numero);
     qnt_hosp++;
@@ -126,6 +144,7 @@ void alta()
         return;
     }
 
+    //alta = verdade para a verificação de imprime()
     hospedes[numero-1]->alta=1;
 
     printf("\nPeso ao sair: ");
@@ -135,6 +154,7 @@ void alta()
 
     printf("\nObs.: Registre a ficha em meio fisico antes de fechar o programa");
 
+    //libera a memoria para as variaveis alocadas dinamicamente
     free(hospedes[numero-1]->calorias);
     free(hospedes[numero-1]);
 }
