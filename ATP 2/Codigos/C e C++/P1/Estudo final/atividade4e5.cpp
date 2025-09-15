@@ -12,6 +12,7 @@ typedef struct no
 
 regFunc *listaRFunc;
 
+//**atual é igual a &regFunc e *atual (que é muito usado no exercicio) é o HEAD da lista, vulgo endereço para o primeiro nó, onde a lista começa
 int cadastro_ordenado(regFunc**atual)
 {
     //aloca ponteiro temp e verifica se alocou certo
