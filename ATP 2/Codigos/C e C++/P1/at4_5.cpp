@@ -3,6 +3,8 @@
 #include <string.h>
 #include <ctype.h>
 
+//registro de funcionarios em nó
+
 typedef struct no
 {
     char nome[50];
@@ -14,6 +16,7 @@ regFunc *listaRFunc;
 
 int cadastrar(regFunc **atual)
 {
+    //registro temporario com informações do que se quer adicionar
     regFunc *temp;
     temp = (regFunc*)malloc(sizeof(regFunc));
     if(temp==NULL) return 1;
@@ -25,6 +28,7 @@ int cadastrar(regFunc **atual)
     printf("\nNumero: ");
     scanf("%d", &numero);
 
+    //verifica se é um numero valido
     if (numero <1 || numero >20)
     {
         perror("\nNumero invalido");
@@ -39,43 +43,51 @@ int cadastrar(regFunc **atual)
 
     strcpy(temp->nome, nome);
 
+    //se não houver nada na lista encadeada
     if((*atual)==NULL)
     {
         temp->prox = NULL;
         *atual = temp;
     }
-    else if(p_atual->matricula >= numero)
-    {
-        if(p_atual->matricula == numero)
-        {
-            perror("\nNumero ja cadastrado");
-            return 1;
-        }        
-        temp->prox = p_atual;
-        (*atual) = temp;
-    }
+    //se houver coisa
     else
     {
-        while(p_atual!=NULL && p_atual->matricula <= numero)
+        //a seguinte parte é o que faz parte da atividade 5
+        while(p_atual!=NULL && p_atual->matricula < numero && p_atual->matricula!= numero)
         {
-            if(p_atual->matricula == numero)
-            {
-                perror("\nNumero ja cadastrado");
-                return 1;
-            }
             p_anterior = p_atual;
             p_atual = p_atual->prox;
         }
-        if(p_atual==NULL)
+        if (p_atual->matricula== numero)
         {
-            p_anterior->prox = temp;
-            temp->prox = NULL;
+            perror("\nNumero repetido");
+            free(temp);
+            return 1;
+        }
+        if(p_anterior==NULL)
+        {
+            temp->prox = *atual;
+            *atual = temp;
         }
         else
         {
             p_anterior->prox = temp;
             temp->prox = p_atual;
         }
+        /*
+        
+        para a atividade 4 apenas:
+
+        while(p_atual->prox!=NULL)
+        {
+            p_atual = p_atual->prox
+        }
+        p_atual->prox = temp;
+        temp->prox = NULL;
+
+        não precisa do p_anterior
+
+        */
     }
 
     return 0;
@@ -91,10 +103,13 @@ int imprime(regFunc **atual)
     }
     else
     {
+        //enquanto o ponteiro nao chegar no fim
         while(temp!=NULL)
         {
+            //imprime informações
             printf("\nNome: %s", temp->nome);
             printf("\nMatricula: %d", temp->matricula);
+            //move o ponteiro
             temp = temp->prox;
         }
     }
@@ -102,6 +117,7 @@ int imprime(regFunc **atual)
     return 0;
 }
 
+//toda essa função faz parte da atividade 5
 int excluir(regFunc**atual)
 {
     regFunc *p_anterior = NULL;
