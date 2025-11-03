@@ -1,0 +1,3 @@
+Os materiais passados nessa aula foram essenciais para o desenvolvimento dos exercícios requisitados na atividade de hoje
+
+Consegui fazer o exercicio de buscas sem maiores problemas, checando o minimo possível os arquivos de referencia. Sobre o exercicio de ordenação, tive mais dificuldade e precisei analisar a referencia mais vezes.

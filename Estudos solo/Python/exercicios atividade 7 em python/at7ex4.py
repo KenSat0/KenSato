@@ -10,5 +10,7 @@ def mdc(a, b):
         result = mdc((b%a), a)
         return result
     
+x = int(input("X: "))
+y = int(input("Y: "))
 
-print(mdc(48, 36))
+print(mdc(x, y))
