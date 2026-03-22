@@ -1,0 +1,117 @@
+1. Recursividade
+
+    Importante: condição de retorno
+
+        int fatorial (int n)
+        {
+            if (n<=1) return 1;
+            else return n*fatorial(n-1);
+        }
+
+2. Arrays (Vetores)
+
+    Vetor = Ponteiro (funcionalmente, porém vetor aloca memória)
+
+    Ponteiro: aponta o valor alocado em um ENDEREÇO
+
+        int vetor[5];
+            vetor[0] = 1;
+            vetor[1] = 2;
+            vetor[2] = 3;
+            vetor[3] = 4;
+            vetor[4] = 5;
+
+        int x = 10;
+        int *px = &x; (apontando para o endereço de X)
+
+        Obs.: utilidade de ponteiros para funçções (variaveis locais e globais)
+
+3. Alocação Dinâmica
+
+    Resolve os problemas de tamanho fixo, desperdicio de memoria e imprevisibilidade
+
+    malloc: aloca sem inicializar
+
+        ex: 
+
+        int *v = (int*)malloc(3*sizeof(int));
+
+        v[0] = 10
+
+        apenas o primeiro espaço é inicializado, nesse caso como 10.
+
+    calloc: aloca e ja instancia tudo como zero
+
+        no mesmo exemplo anterior, usando CALLOC ao inves de MALLOC, o vetor, após ser alocado, teria seus endereços com valores {10, 0, 0}
+
+    reallloc: redimensiona (preferencialmente não use)
+
+        exemplo:
+
+            int *v = (int*)calloc(3*sizeof(int));
+
+            v[0] = 10;
+
+            realloc(v, 3*sizeif(int));
+
+        nesse caso, o vetor seria {10, 0, ?}, o ultimo espaço tem memória alocada para guardar um inteiro, mas não tem um valor exato definido.
+
+    free: libera o espaço de memoria alocada
+
+    Obs.: 
+        1. NÃO ESQUECE DO free
+        2. sempre verifique o NULL (não vale para a prova, mas para a vida)
+
+4. Matrizes
+
+    Vetor de Vetores / Array bidimensional
+
+        **p > *p > valor do endereço desejado
+
+    Logica de vizinhanças de vizinhanças (endereços de vizinhos virtuais)
+
+    Questão da redundância: pode ser trabalhada com vetores/ponteiros.
+
+    Vantagem: otimização do codigo.
+
+    int matriz[2][3] = 
+    {
+        {1, 2, 3},
+        {4, 5, 6}
+    };
+
+    Percorrendo Matrizes
+
+        for (int i = 0; i < linhas; i++)
+        {
+            for (int j = 0; j < colunas; j++)
+            {
+                iteração para cada coluna, apos percorrer as linhas
+            }
+
+            iteração a cada linha
+        }
+
+            Obs.: atenção especial à matrizes dinâmicas
+
+                int **matriz = (int**) malloc (linhas * sizeof(int*));
+
+                for (int i = 0; i < linhas; i++)
+                {
+                    matriz[i] = (int*) malloc (colunas * sizeof(int));
+                }
+
+                for (int i = 0; i < linhas; i++)
+                {
+                    for (int j = 0; j < colunas; j++)
+                    {
+                        matriz[i] = algum_valor;
+                    }
+                }
+
+                ...
+
+                for (int i = 0; i < linhas; i++) free (matriz[i]);
+                free(matriz);
+
+

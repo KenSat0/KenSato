@@ -1,0 +1,13 @@
+3a. o ponteiro não é inicializado, portanto imprime um valor (desreferencializado) indefinido
+
+3b. long não acompanhada do tipo
+
+3c.o tipo de x não pode ser atribuido a y
+
+3d. tamanho do vetor s não especificado; laço for inicializado incorretamente; printf contem *s ao inves de s[i]
+
+3e. short não acompanhado do tipo; variavel declarada como void; result (declarada de forma errada), recebe uma operação com variaveis declaradas como void (errado)
+
+3f. xPtr é float e recebe um endereço de forma int, alem de não ser declarado como ponteiro e também não ser desreferencializado na função
+
+3g. vetor inicializado como char mas é chamado no printf como string    

@@ -1,0 +1,105 @@
+for (x=100, x >= 1, x++)
+    printf("%d", x);
+
+---
+
+for (x=100; x >= 1; x++)
+    printf("%d", x);
+
+obs.: roda para sempre (não tem fim)
+
+===
+
+if (valor%2)
+{
+    printf("é par/n");
+else
+{
+    printf("é impar/n");
+
+---
+
+if (valor%2)
+{
+    printf("é impar/n");
+}
+else
+{
+    printf("é par/n");
+}
+
+===
+
+for (x= .000001; x == .0001; x+=.000001)
+{
+    printf("%.7f/n", x);
+}
+
+---
+
+for (x= .000001; x <= .0001; x+=.000001)
+{
+    printf("%.7f/n", x);
+}
+
+obs.: loop nunca é ativado
+
+===
+
+3a função
+3b chamada de função 
+3c local
+3d return
+3e void
+
+4
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main ()
+{
+    float km, litro = 0;
+    float litro_total = 0; 
+    float km_total = 0;
+    float total = 0;
+
+    while (litro != -1)
+    {
+        printf("Informe Litros (-1 sair): ");
+        scanf ("%f", &litro);
+
+        if (litro != -1)
+        {
+        printf("Informe Km: ");
+        scanf ("%f", &km);
+        
+        printf("%f", km/litro);
+
+        litro_total += litro;
+        km_total += km;
+        
+        }
+    }
+
+    printf("%f", km_total/litro_total);
+
+    getchar ();
+    return 0;
+}
+
+ex5
+
+int perfect(int n)
+{
+    int soma = 0;
+    for (int i = 0; i<n; i++)
+    {
+        if (n%i == 0)
+        {
+            soma += i;
+        }
+    }
+    if (soma==n) return (1);
+    else return (0);
+}

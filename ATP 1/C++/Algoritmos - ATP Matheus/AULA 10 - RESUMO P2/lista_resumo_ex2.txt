@@ -1,0 +1,9 @@
+2a. arrays / vetores
+2b. são do mesmo tipo
+2c. indice
+2d. p[0], p[1], p[2], p[3], p[4]
+2e. valor
+2f. declarar / inicializar 
+2g. quantidade de linhas / quantidade de colunas
+2h. m / n / m*n 
+2i. d[2][4]

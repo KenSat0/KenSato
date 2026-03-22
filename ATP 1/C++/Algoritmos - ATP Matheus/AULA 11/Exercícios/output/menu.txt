@@ -1,0 +1,6 @@
+5
+Lanche;12.50
+Batata Frita;8.00
+Bebida;5.50
+Milkshake;10.00
+Combo;30.00

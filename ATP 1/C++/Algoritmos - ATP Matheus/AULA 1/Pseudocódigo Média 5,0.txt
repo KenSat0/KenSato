@@ -1,0 +1,24 @@
+Pseudocódigo Média 5,0
+
+Algoritmo_Aprovacao
+
+	
+var 
+prova1, prova2, prova3, media: racional
+aprovado: booleano
+
+
+inicio
+
+aprovado <- falso
+
+Leia (prova1)
+Leia (prova2)
+Leia (prova3)
+
+media <- (prova1 + prova2 + prova3)/3
+
+Se (media) maior ou igual a 5:
+	aprovado <- verdadeiro
+
+retornar (aprovado)

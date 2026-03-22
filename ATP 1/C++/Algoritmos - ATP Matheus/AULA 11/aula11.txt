@@ -1,0 +1,24 @@
+Definições:
+
+    Arquivo = grupo de registros relacionados, estrutura permanente de dados
+        tipos comuns: .txt(texto simples) 
+                      .csv(dados tabulares)  
+                      .cpp(codigo-fonte)
+
+    Diretórios = pastas que organizam arquivos, hierarquia em árvore
+        exemplo: /Documentos/
+                 /Projetos/C++/
+
+    obs.: dado que o computador funciona com uma lógica VIRTUAL, as pastas, arquivos e bits são todos 
+    organizados com informações de PONTEIROS e ENDEREÇOS.
+
+    ex: quando você coloca um arquivo X dentro de uma pasta Y, no disco rigido, os bits que representam 
+    X ganham um ponteiro que indica o endereço Y. Toda essa lógica de endereços tem uma porção do HD 
+    dedicada à ela.
+
+    Memoria RAM x Memoria Persistente
+
+        Persistente tem bateria propria, ou seja, mantem seus bits mesmo quando a fonte de energia é removida
+        diferente da memoria RAM, que tem sua memoria resetada quando sua fonte é removida.
+
+    

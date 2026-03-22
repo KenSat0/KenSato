@@ -1,0 +1,13 @@
+Listas Encadeadas
+    Sequencias de nós
+
+struct no 
+{
+    int info;
+    struct no *prox;
+};
+
+ponteiro aponta para outro struct do mesmo tipo
+
+Operações
+    Inserção pelo inicio:

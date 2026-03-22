@@ -1,0 +1,15 @@
+
+    a) int c, estaVariavel, q76354, numero;
+    b) printf("Digite um numero inteiro: ");
+    c) scanf("%d", &a);
+    d)
+
+    if (x != 7)
+    {
+        printf("\nA variavel numero nao e 7");
+    }
+
+    e) printf("Este e um programa em C");
+    f) printf("Este e um programa em \nC");
+    g) printf("\nEste \ne \num \nprograma \nem \nC");
+    h) printf("Este/e/um/programa/em/C");
