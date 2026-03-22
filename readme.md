@@ -1,18 +1,1 @@
-git --version
-
-git init
-
-git remote add origin (link repositorio)
-
-
-
-git add .
-
-git commit -m "(atualizacao do commit)"
-
-git push origin 
-
-
-git checkout -b "(nome branch)"
-    cria nova branch e entra nela
-
+Esse repositório contém todo o conteúdo desenvolvido por mim durante as aulas de Algorítmo e Técnicas de Programação do curso de Ciência da Computação da UNESP
