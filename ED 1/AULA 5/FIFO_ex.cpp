@@ -55,8 +55,18 @@ void remove(struct node **head){
     return;
 }
 
-void impar_par(struct node **head){
+void impar_par(struct node **head, struct node **head_par, struct node **head_imp){
+    if (checkVoid(head)) return;
 
+    struct node *aux = *head;
+    while (aux != NULL){
+        if((aux->data)%2 == 0){
+            insert(head_par, aux->data);
+        }else{
+            insert(head_imp, aux->data);
+        }
+        aux = aux->prox;
+    }
 }
 
 int main(){

@@ -1,111 +1,127 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
+#include <string>
+#include <vector>
 
-#define MAXLENGHT 5
+class episodio;
+class temporada;
+class serie;
 
-struct ep{
-    int notaA, notaB;
-    int num;
-    bool e_existe;
-};
+class episodio{
+    private:
+        int ep_index;
+        temporada *ref;
+    public:
+        int nota1;
+        int nota2;
 
-struct temporada{
-    int num;
-    bool t_existe;
-    struct ep array[MAXLENGHT];
-};
-
-struct serie{
-    char nome[50];
-    struct temporada array[MAXLENGHT];
-};
-
-int notaMedia(struct ep e){
-    int media = (e.notaA + e.notaB)/2;
-    return media;
-}
-
-void consulta(struct serie s){
-    int x = 0;
-    while(s.array[x].t_existe){
-        struct temporada t = s.array[x];
-        int y = 0;
-        while(t.array[y].e_existe){
-            struct ep e = t.array[y];
-            if (notaMedia(e) < 5){
-                printf("\nSerie merda");
-                return;
-            }
-            y++;
+        episodio(int x, int y, int z, temporada *t){
+            nota1 = x;
+            nota2 = y;
+            ep_index = z;
+            ref = t;
         }
-        x++;
+
+        int notaMedia(){
+            return ((nota1+nota2)/2);
+        }
+};
+
+class temporada{
+    private:
+        int temp_index;
+        std::vector<episodio*> episodios;
+        serie *ref;
+
+    public:
+        void addep(episodio *e){
+            episodios.push_back(e);
+        }
+
+        int getIndex(){
+            return temp_index;
+        }
+
+    temporada(int temp_index, serie *s){
+        this->temp_index = temp_index;
+        ref = s;
     }
-    printf("\nPeak");
-}
+
+    int qualityCheck(){
+        int counter = 0;
+        for (episodio *e_aux : episodios){
+            if(e_aux->notaMedia() < 5){
+                counter++;
+            }
+        }
+        return counter;
+    }
+};
+
+class serie{
+    private:
+        std::string nome;
+        std::vector<temporada*> temporadas;
+
+    public:
+        void addtemp(temporada* t){
+            temporadas.push_back(t);
+        }
+
+    serie(std::string name){
+        setName(name);
+    }
+
+    void setName(std::string name){
+        nome = name;
+    }
+
+    void qualityCheck(){
+        for (temporada *t_aux : temporadas){
+                if(t_aux->qualityCheck()==0){
+                    std::cout << "temporada " << t_aux->getIndex() << " e perfeita\n";
+                }
+                else if(t_aux->qualityCheck()==1){
+                    std::cout << "temporada " << t_aux->getIndex() << " tem 1 episodio ruim\n";
+                }
+                else{
+                    std::cout << "temporada " << t_aux->getIndex() << " tem " << t_aux->qualityCheck() << " episodios ruins\n";
+                }
+        }
+    }
+};
 
 int main(){
-    struct ep i;
-        i.notaA = 6;
-        i.notaB = 6;
-        i.num = 1;
-    struct ep ii;
-        ii.notaA = 6;
-        ii.notaB = 6;
-        ii.num = 2;
-    struct ep iii;
-        iii.notaA = 6;
-        iii.notaB = 6;
-        iii.num = 3;
-    struct ep iv;
-        iv.notaA = 6;
-        iv.notaB = 6;
-        iv.num = 4;
-    struct ep v;
-        v.notaA = 3;
-        v.notaB = 6;
-        v.num = 5;
-    struct ep vi;
-        vi.notaA = 6;
-        vi.notaB = 6;
-        vi.num = 6;
-    
-    struct temporada um;
-        for(int i = 0; i<MAXLENGHT; i++){
-            um.array[i].e_existe = 0;
-        }
+    serie teste("amarelo");
 
-        um.array[0] = i;
-        um.array[0].e_existe = 1;
-        um.array[1] = ii;
-        um.array[1].e_existe = 1;
-        um.array[2] = iii;
-        um.array[2].e_existe = 1;
-        um.array[3] = iv;
-        um.array[3].e_existe = 1;
-        um.array[4] = v;
-        um.array[4].e_existe = 1;
-    struct temporada dois;
-        for(int i = 0; i<MAXLENGHT; i++){
-            dois.array[i].e_existe = 0;
-        }
+    temporada t1(1, &teste);
+    temporada t2(2, &teste);
+    temporada t3(3, &teste);
 
-        dois.array[0] = vi;
-        dois.array[0].e_existe = 1;
+    teste.addtemp(&t1);
+    teste.addtemp(&t2);
+    teste.addtemp(&t3);
 
-    um.num = 1;
-    dois.num = 2;
+    episodio e1(6, 6, 0, &t1);
+    episodio e2(6, 6, 1, &t1);
+    episodio e3(6, 6, 2, &t1);
+    episodio e4(6, 6, 3, &t2);
+    episodio e5(6, 6, 4, &t2);
+    episodio e6(1, 1, 5, &t2);
+    episodio e7(6, 6, 6, &t3);
+    episodio e8(1, 1, 7, &t3);
+    episodio e9(1, 1, 8, &t3);
 
-    struct serie *pinto;
-    for(int i = 0; i<MAXLENGHT; i++){
-        pinto->array[i].t_existe = 0;
-    }
+    t1.addep(&e1);
+    t1.addep(&e2);
+    t1.addep(&e3);
+    t2.addep(&e4);
+    t2.addep(&e5);
+    t2.addep(&e6);
+    t3.addep(&e7);
+    t3.addep(&e8);
+    t3.addep(&e9);
 
-    pinto->array[0] = um;
-    pinto->array[0].t_existe = 1;
-    pinto->array[1] = dois;
-    pinto->array[1].t_existe = 1;
-
-    consulta(*pinto);
+    teste.qualityCheck();
 
     return 0;
 }
