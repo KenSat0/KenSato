@@ -1,0 +1,5 @@
+D:\Github\POO\arquivos aula\fssym-versions\obj\Debug\net8.0\fssym-versions.GeneratedMSBuildEditorConfig.editorconfig
+D:\Github\POO\arquivos aula\fssym-versions\obj\Debug\net8.0\fssym-versions.AssemblyInfoInputs.cache
+D:\Github\POO\arquivos aula\fssym-versions\obj\Debug\net8.0\fssym-versions.AssemblyInfo.cs
+D:\Github\POO\arquivos aula\fssym-versions\obj\Debug\net8.0\fssym-versions.csproj.CoreCompileInputs.cache
+D:\Github\POO\arquivos aula\fssym-versions\obj\Debug\net8.0\fssym-versions.sourcelink.json

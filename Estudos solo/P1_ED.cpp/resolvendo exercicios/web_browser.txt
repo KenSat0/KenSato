@@ -1,0 +1,48 @@
+1. Estruturas
+    Pilha Retroceder: Armazena o histórico das páginas visitadas anteriormente.
+
+    Pilha Avancar: Armazena as páginas que foram deixadas para trás ao usar a função "Voltar".
+
+    Variável paginaAtual: Armazena a URL da página que o usuário está visualizando no momento.
+
+2. Inicializar( )
+    Esvaziar a Pilha Retroceder.
+
+    Esvaziar a Pilha Avancar.
+
+    Definir paginaAtual como vazio (ou uma página inicial padrão).
+
+3. Navegar(url)
+    Se existir uma paginaAtual (não estiver vazia):
+
+        Empilhar a paginaAtual na Pilha Retroceder.
+
+    Definir a nova url como a paginaAtual.
+
+    Limpar a Pilha Avancar (sempre que você navega para um novo endereço, o caminho de "avançar" é descartado).
+
+4. Voltar( )
+    Se a Pilha Retroceder estiver vazia:
+
+        Exibir mensagem de que não há histórico para voltar.
+
+    Senão:
+
+        Empilhar a paginaAtual na Pilha Avancar.
+
+        Desempilhar o topo da Pilha Retroceder e atribuir esse valor à paginaAtual.
+
+        Exibir a nova paginaAtual.
+
+5. Avancar( )
+    Se a Pilha Avancar estiver vazia:
+
+        Exibir mensagem de que não há páginas para avançar.
+
+    Senão:
+
+        Empilhar a paginaAtual na Pilha Retroceder.
+
+        Desempilhar o topo da Pilha Avancar e atribuir esse valor à paginaAtual.
+
+        Exibir a nova paginaAtual.

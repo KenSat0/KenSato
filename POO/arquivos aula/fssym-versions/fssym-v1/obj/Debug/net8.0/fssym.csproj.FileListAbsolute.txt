@@ -1,0 +1,15 @@
+D:\Github\POO\arquivos aula\fssym-versions\fssym-v1\bin\Debug\net8.0\fssym.exe
+D:\Github\POO\arquivos aula\fssym-versions\fssym-v1\bin\Debug\net8.0\fssym.deps.json
+D:\Github\POO\arquivos aula\fssym-versions\fssym-v1\bin\Debug\net8.0\fssym.runtimeconfig.json
+D:\Github\POO\arquivos aula\fssym-versions\fssym-v1\bin\Debug\net8.0\fssym.dll
+D:\Github\POO\arquivos aula\fssym-versions\fssym-v1\bin\Debug\net8.0\fssym.pdb
+D:\Github\POO\arquivos aula\fssym-versions\fssym-v1\obj\Debug\net8.0\fssym.GeneratedMSBuildEditorConfig.editorconfig
+D:\Github\POO\arquivos aula\fssym-versions\fssym-v1\obj\Debug\net8.0\fssym.AssemblyInfoInputs.cache
+D:\Github\POO\arquivos aula\fssym-versions\fssym-v1\obj\Debug\net8.0\fssym.AssemblyInfo.cs
+D:\Github\POO\arquivos aula\fssym-versions\fssym-v1\obj\Debug\net8.0\fssym.csproj.CoreCompileInputs.cache
+D:\Github\POO\arquivos aula\fssym-versions\fssym-v1\obj\Debug\net8.0\fssym.sourcelink.json
+D:\Github\POO\arquivos aula\fssym-versions\fssym-v1\obj\Debug\net8.0\fssym.dll
+D:\Github\POO\arquivos aula\fssym-versions\fssym-v1\obj\Debug\net8.0\refint\fssym.dll
+D:\Github\POO\arquivos aula\fssym-versions\fssym-v1\obj\Debug\net8.0\fssym.pdb
+D:\Github\POO\arquivos aula\fssym-versions\fssym-v1\obj\Debug\net8.0\fssym.genruntimeconfig.cache
+D:\Github\POO\arquivos aula\fssym-versions\fssym-v1\obj\Debug\net8.0\ref\fssym.dll

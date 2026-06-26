@@ -1,0 +1,15 @@
+D:\Github\POO\MeuTerminal\obj\Debug\net8.0\MeuTerminal.GeneratedMSBuildEditorConfig.editorconfig
+D:\Github\POO\MeuTerminal\obj\Debug\net8.0\MeuTerminal.AssemblyInfoInputs.cache
+D:\Github\POO\MeuTerminal\obj\Debug\net8.0\MeuTerminal.AssemblyInfo.cs
+D:\Github\POO\MeuTerminal\obj\Debug\net8.0\MeuTerminal.csproj.CoreCompileInputs.cache
+D:\Github\POO\MeuTerminal\obj\Debug\net8.0\MeuTerminal.sourcelink.json
+D:\Github\POO\MeuTerminal\bin\Debug\net8.0\MeuTerminal.exe
+D:\Github\POO\MeuTerminal\bin\Debug\net8.0\MeuTerminal.deps.json
+D:\Github\POO\MeuTerminal\bin\Debug\net8.0\MeuTerminal.runtimeconfig.json
+D:\Github\POO\MeuTerminal\bin\Debug\net8.0\MeuTerminal.dll
+D:\Github\POO\MeuTerminal\bin\Debug\net8.0\MeuTerminal.pdb
+D:\Github\POO\MeuTerminal\obj\Debug\net8.0\MeuTerminal.dll
+D:\Github\POO\MeuTerminal\obj\Debug\net8.0\refint\MeuTerminal.dll
+D:\Github\POO\MeuTerminal\obj\Debug\net8.0\MeuTerminal.pdb
+D:\Github\POO\MeuTerminal\obj\Debug\net8.0\MeuTerminal.genruntimeconfig.cache
+D:\Github\POO\MeuTerminal\obj\Debug\net8.0\ref\MeuTerminal.dll

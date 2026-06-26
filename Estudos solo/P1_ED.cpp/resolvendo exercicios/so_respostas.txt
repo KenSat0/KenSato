@@ -1,0 +1,88 @@
+PARA INTERCALAR LISTAS ENCADEADAS DINAMICAS:
+
+node *intercalar(node *La, node *Lb){
+    node *auxA = La;
+    node *auxB = Lb;
+    node *Lc = NULL;
+
+    while(auxA != NULL && auxB != NULL){
+        insert(&Lc, auxA->data);
+        insert(&Lc, auxB->data);
+        auxA = auxA->prox;
+        auxB = auxB->prox;
+    }
+    //a função irá terminar chegando ao fim da menor lista
+
+    while(auxA != NULL){
+        insert(&Lc, auxA->data);
+        auxA = auxA->prox;
+    }
+
+    while(auxB != NULL){
+        insert(&Lc, auxB->data);
+        auxB = auxB->prox;
+    }
+
+    return(Lc);
+}
+
+PARA INTERSEÇÃO DE FILAS ORDENADAS:
+
+struct FilaOrdenada *intersect(struct FilaOrdenada *a, struct FilaOrdenada *b){
+    struct FilaOrdenada *c = (struct FilaOrdenada*)malloc(sizeof(struct FilaOrdenada));
+    init(c);
+    if(a==NULL || b==NULL) return c;
+
+    for (int i = 0; i < a->total; i++) {
+        for (int j = 0; j < b->total; j++) {
+            if(a->vetor[i] == b->vetor[j]){
+            int inter = a->vetor[i];
+                queue(c, inter);
+            }
+        }
+    }
+    return c;
+}
+
+REMOVER ELEMENTO DE LISTA CIRCULAR SEM HEAD:
+
+void removeSemHead(No *no_qualquer, int valor_requisitado){
+    No *ant, *aux;
+    aux = no_qualquer->next;
+    while(aux->data != valor_requisitado && aux != no_qualquer){
+        ant = aux;
+        aux = aux->next;
+    }
+    if(aux == no_qualquer){
+    printf("\nErro: Valor Inexistente");
+    }else{
+        ant->next = aux->next;
+        free(aux);
+    }
+}
+
+(igual o anterior porem usando **head):
+
+void removeComHead(No **head, int valor_requisitado){
+    if (*head == NULL) return;
+    No *aux = *head;
+    No *ant = NULL;
+
+    if (aux->data == valor_requisitado) {
+        *head = aux->next;
+        free(aux);
+        return;
+    }
+
+    while (aux != NULL && aux->data != valor_requisitado) {
+        ant = aux;
+        aux = aux->next;
+    }
+
+    if (aux == NULL) return;
+    ant->next = aux->next;
+    free(aux);
+}
+
+VALIDAR PARENTESIS EM EXPRESSÃO ALGEBRICA:
+
