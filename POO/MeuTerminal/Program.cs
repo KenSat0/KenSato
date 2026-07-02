@@ -4,6 +4,7 @@ using System.Collections.Generic;
 interface IFileSystemItem
 {
     string GetName();
+    DateTime GetCreationTime();
     void Print(string prefix);
 }
 
@@ -14,16 +15,19 @@ interface IFolder : IFileSystemItem
     IFileSystemItem Find(string name);
     bool RemoveFile(string name);
     bool RemoveFolder(string name);
-    int CountFiles(); // Adicionado ao contrato
+    int CountFiles();
+    void PrintTree(string prefix);
 }
 
 class TextFile : IFileSystemItem
 {
     private string name;
+    private DateTime creationTime;
 
     public TextFile(string fileName)
     {
         name = fileName;
+        creationTime = DateTime.Now;
     }
 
     public string GetName()
@@ -31,9 +35,15 @@ class TextFile : IFileSystemItem
         return name;
     }
 
+    public DateTime GetCreationTime()
+    {
+        return creationTime;
+    }
+
     public void Print(string prefix)
     {
-        Console.WriteLine(prefix + name);
+        // Usa PadRight para alinhar os nomes e a data visualmente no ls
+        Console.WriteLine(prefix + name.PadRight(15) + " (Criado: " + creationTime.ToString("HH:mm:ss") + ")");
     }
 }
 
@@ -42,17 +52,24 @@ class Folder : IFolder
     private string name;
     private Folder parent;
     private List<IFileSystemItem> items;
+    private DateTime creationTime;
 
     public Folder(string folderName, Folder parentFolder)
     {
         name = folderName;
         parent = parentFolder;
         items = new List<IFileSystemItem>();
+        creationTime = DateTime.Now;
     }
 
     public string GetName()
     {
         return name;
+    }
+
+    public DateTime GetCreationTime()
+    {
+        return creationTime;
     }
 
     public Folder GetParent()
@@ -112,20 +129,40 @@ class Folder : IFolder
         return false;
     }
 
-    // Implementação do novo método de contagem
     public int CountFiles()
     {
         int count = 0;
         foreach (var item in items)
         {
-            if (item is TextFile) count++;
+            if (item is TextFile)
+            {
+                count++;
+            }
+            // Se quiser que conte subpastas tambem, descomente a linha abaixo:
+            // else if (item is Folder f) count += f.CountFiles();
         }
         return count;
     }
 
-    public void Print(string prefix)
+    public void PrintTree(string prefix)
     {
         Console.WriteLine(prefix + name + "/");
+        foreach (var item in items)
+        {
+            if (item is Folder f)
+            {
+                f.PrintTree(prefix + "  |-- ");
+            }
+            else
+            {
+                item.Print(prefix + "  |-- ");
+            }
+        }
+    }
+
+    public void Print(string prefix)
+    {
+        Console.WriteLine(prefix + name.PadRight(15) + "/ (Criado: " + creationTime.ToString("HH:mm:ss") + ")");
     }
 
     public void ListItems()
@@ -160,11 +197,17 @@ class Program
 
             string line = Console.ReadLine();
 
-            if (line == null) break;
+            if (line == null)
+            {
+                break;
+            }
 
             line = line.Trim();
 
-            if (line.Length == 0) continue;
+            if (line.Length == 0)
+            {
+                continue;
+            }
 
             if (line == "?")
             {
@@ -172,7 +215,10 @@ class Program
                 continue;
             }
 
-            if (line == "exit") break;
+            if (line == "exit")
+            {
+                break;
+            }
 
             Execute(line);
         }
@@ -184,16 +230,59 @@ class Program
         string command = parts[0];
         string name = parts.Length > 1 ? parts[1] : "";
 
-        if (command == "touch") { Touch(name); return; }
-        if (command == "rm") { Remove(name); return; }
-        if (command == "ls") { ListFiles(); return; }
-        if (command == "mkdir") { MakeFolder(name); return; }
-        if (command == "cd") { ChangeFolder(name); return; }
-        if (command == "rmdir") { RemoveFolder(name); return; }
-        if (command == "pwd") { Console.WriteLine(CurrentPath()); return; }
-        
-        // Novo comando adicionado ao menu
-        if (command == "count") { CountFilesCommand(name); return; }
+        if (command == "touch")
+        {
+            Touch(name);
+            return;
+        }
+
+        if (command == "rm")
+        {
+            Remove(name);
+            return;
+        }
+
+        if (command == "ls")
+        {
+            ListFiles();
+            return;
+        }
+
+        if (command == "mkdir")
+        {
+            MakeFolder(name);
+            return;
+        }
+
+        if (command == "cd")
+        {
+            ChangeFolder(name);
+            return;
+        }
+
+        if (command == "rmdir")
+        {
+            RemoveFolder(name);
+            return;
+        }
+
+        if (command == "pwd")
+        {
+            Console.WriteLine(CurrentPath());
+            return;
+        }
+
+        if (command == "count")
+        {
+            CountFilesCommand(name);
+            return;
+        }
+
+        if (command == "tree")
+        {
+            TreeCommand();
+            return;
+        }
 
         Console.WriteLine("Comando invalido. Digite ? para ajuda.");
     }
@@ -214,21 +303,149 @@ class Program
         Console.WriteLine("Total de arquivos em '" + target.GetName() + "': " + target.CountFiles());
     }
 
-    // ... (Mantendo os outros métodos Touch, Remove, ListFiles, etc. inalterados)
-    private static void Touch(string name) { if (name.Length > 0) currentFolder.Add(new TextFile(name)); }
-    private static void Remove(string name) { currentFolder.RemoveFile(name); }
-    private static void ListFiles() { currentFolder.ListItems(); }
-    private static void MakeFolder(string name) { if (name.Length > 0) currentFolder.Add(new Folder(name, currentFolder)); }
-    private static void ChangeFolder(string name) { 
-        if (name == "/") currentFolder = root;
-        else if (name == "..") { if (currentFolder.GetParent() != null) currentFolder = currentFolder.GetParent(); }
-        else { var f = currentFolder.Find(name) as Folder; if (f != null) currentFolder = f; }
+    private static void TreeCommand()
+    {
+        currentFolder.PrintTree("");
     }
-    private static void RemoveFolder(string name) { currentFolder.RemoveFolder(name); }
-    private static string CurrentPath() { 
-        Folder folder = currentFolder; string path = ""; 
-        while (folder != null && folder != root) { path = "/" + folder.GetName() + path; folder = folder.GetParent(); }
-        return path == "" ? "/" : path; 
+
+    private static void Touch(string name)
+    {
+        if (name.Length == 0)
+        {
+            Console.WriteLine("Use: touch nome_do_arquivo");
+            return;
+        }
+
+        if (currentFolder.Find(name) != null)
+        {
+            Console.WriteLine("Ja existe um item chamado: " + name);
+            return;
+        }
+
+        currentFolder.Add(new TextFile(name));
+        Console.WriteLine("Arquivo criado: " + name);
+    }
+
+    private static void Remove(string name)
+    {
+        if (name.Length == 0)
+        {
+            Console.WriteLine("Use: rm nome_do_arquivo");
+            return;
+        }
+
+        if (currentFolder.RemoveFile(name))
+        {
+            Console.WriteLine("Arquivo removido: " + name);
+            return;
+        }
+
+        Console.WriteLine("Arquivo nao encontrado: " + name);
+    }
+
+    private static void ListFiles()
+    {
+        currentFolder.ListItems();
+    }
+
+    private static void MakeFolder(string name)
+    {
+        if (name.Length == 0)
+        {
+            Console.WriteLine("Use: mkdir nome_do_diretorio");
+            return;
+        }
+
+        if (currentFolder.Find(name) != null)
+        {
+            Console.WriteLine("Ja existe um item chamado: " + name);
+            return;
+        }
+
+        currentFolder.Add(new Folder(name, currentFolder));
+        Console.WriteLine("Diretorio criado: " + name);
+    }
+
+    private static void ChangeFolder(string name)
+    {
+        IFileSystemItem item;
+        Folder folder;
+
+        if (name.Length == 0)
+        {
+            Console.WriteLine("Use: cd nome_do_diretorio");
+            return;
+        }
+
+        if (name == "/")
+        {
+            currentFolder = root;
+            return;
+        }
+
+        if (name == "..")
+        {
+            if (currentFolder.GetParent() != null)
+            {
+                currentFolder = currentFolder.GetParent();
+            }
+
+            return;
+        }
+
+        item = currentFolder.Find(name);
+        folder = item as Folder;
+
+        if (folder == null)
+        {
+            Console.WriteLine("Diretorio nao encontrado: " + name);
+            return;
+        }
+
+        currentFolder = folder;
+    }
+
+    private static void RemoveFolder(string name)
+    {
+        if (name.Length == 0)
+        {
+            Console.WriteLine("Use: rmdir nome_do_diretorio");
+            return;
+        }
+
+        if (currentFolder.RemoveFolder(name))
+        {
+            Console.WriteLine("Diretorio removido: " + name);
+            return;
+        }
+
+        Console.WriteLine("Diretorio nao encontrado: " + name);
+    }
+
+    private static string CurrentPath()
+    {
+        Folder folder = currentFolder;
+        List<string> parts = new List<string>();
+        int index;
+        string path = "";
+
+        while (folder != null && folder != root)
+        {
+            parts.Add(folder.GetName());
+            folder = folder.GetParent();
+        }
+
+        for (index = parts.Count - 1; index >= 0; index--)
+        {
+            path = path + "/" + parts[index];
+        }
+
+        if (path.Length == 0)
+        {
+            return "/";
+        }
+
+        return path;
     }
 
     private static void ShowHelp()
@@ -243,7 +460,8 @@ class Program
         Console.WriteLine("cd /          volta para a raiz");
         Console.WriteLine("rmdir <nome>  remove um diretorio");
         Console.WriteLine("pwd           mostra o diretorio atual");
-        Console.WriteLine("count [nome]  conta arquivos (opcional: pasta)");
+        Console.WriteLine("count [nome]  conta os arquivos (opcional: pasta específica)");
+        Console.WriteLine("tree          mostra a arvore de diretorios");
         Console.WriteLine("?             mostra esta ajuda");
         Console.WriteLine("exit          encerra");
     }
