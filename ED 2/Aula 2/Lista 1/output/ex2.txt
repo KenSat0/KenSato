@@ -1,0 +1,10 @@
+teste de hexdump
+
+int main(){
+    bool blindins = 0;
+
+    if(!blindins) printf("pode moscar");
+    else printf("nao pode moscar");
+
+    return (0);
+}
