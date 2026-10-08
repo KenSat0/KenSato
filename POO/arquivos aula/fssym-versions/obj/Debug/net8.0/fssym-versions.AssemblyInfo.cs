@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("fssym-versions")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+276152ca214bc55e1383be09882cea277672877c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b6deee23fedd5ef16bbade9e5b4dce466c8b4d22")]
 [assembly: System.Reflection.AssemblyProductAttribute("fssym-versions")]
 [assembly: System.Reflection.AssemblyTitleAttribute("fssym-versions")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
