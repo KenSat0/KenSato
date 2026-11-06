@@ -78,12 +78,3 @@ int busca(HASH *h, int x){
 
     return -1;
 }
-
-int main(){
-    int vec[10] = {0, 10, 20, 30, 40, 50, 60, 70, 80, 90};
-    HASH *h = inicializarHash(h, size);
-    for(int i = 0; i<10; i++){
-        elemento aux = criarElemento(vec[i]);
-        insert(h, aux);
-    }
-}
